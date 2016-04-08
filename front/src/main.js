@@ -6,11 +6,11 @@ socket.on('connection', function(socket){
 });
 
 socket.on('event', event => {
-  $('.new-events').append(JSON.stringify(event, null, 2));
+  appendEvent(event, true)
 });
 
 socket.on('events', event => {
-  $('.old-events').append(JSON.stringify(event, null, 2));
+  appendEvent(event, false)
 });
 
 function appendEvent (event, fresh) {
