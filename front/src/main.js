@@ -9,8 +9,10 @@ socket.on('event', event => {
   appendEvent(event, true)
 });
 
-socket.on('events', event => {
-  appendEvent(event, false)
+socket.on('events', events => {
+  events.forEach(event => {
+    appendEvent(event, false);
+  })
 });
 
 function appendEvent (event, fresh) {

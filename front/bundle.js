@@ -10,8 +10,10 @@ socket.on('event', function (event) {
   appendEvent(event, true);
 });
 
-socket.on('events', function (event) {
-  appendEvent(event, false);
+socket.on('events', function (events) {
+  events.forEach(function (event) {
+    appendEvent(event, false);
+  });
 });
 
 function appendEvent(event, fresh) {
