@@ -14,17 +14,17 @@ cat <<EOF > ~/.git_template/hooks/post-commit
 
 gitloggerUrl="http://178.62.83.202:8000"
 
-branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+branchName="\$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
   git rev-parse --short HEAD 2> /dev/null || \
   echo unknown)"
 
-repoName="$(basename $(git rev-parse --show-toplevel))"
+repoName="\$(basename \$(git rev-parse --show-toplevel))"
 
-commitMsg="$(printf "$(git log -1 --pretty=%B)")"
+commitMsg="\$(printf "\$(git log -1 --pretty=%B)")"
 
-user="$(git config user.email)"
+user="\$(git config user.email)"
 
-curl -s --data "repo=$repoName&branch=$branchName&user=$user&msg=$commitMsg" "$gitloggerUrl/commit" &
+curl -s --data "repo=\$repoName&branch=\$branchName&user=\$user&msg=\$commitMsg" "\$gitloggerUrl/commit" &
 
 EOF
 
@@ -34,15 +34,15 @@ cat <<EOF > ~/.git_template/hooks/post-checkout
 
 gitloggerUrl="http://178.62.83.202:8000"
 
-branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
+branchName="\$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
   git rev-parse --short HEAD 2> /dev/null || \
   echo unknown)"
 
-repoName="$(basename $(git rev-parse --show-toplevel))"
+repoName="\$(basename \$(git rev-parse --show-toplevel))"
 
-user="$(git config user.email)"
+user="\$(git config user.email)"
 
-curl -s --data "repo=$repoName&branch=$branchName&user=$user" "$gitloggerUrl/checkout" &
+curl -s --data "repo=\$repoName&branch=\$branchName&user=\$user" "\$gitloggerUrl/checkout" &
 
 EOF
 
