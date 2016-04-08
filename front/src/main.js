@@ -6,7 +6,7 @@ socket.on('connection', function(socket){
 });
 
 socket.on('event', event => {
-  appendEvent(event, true)
+  appendEvent(event.new_val, true)
 });
 
 socket.on('events', events => {
