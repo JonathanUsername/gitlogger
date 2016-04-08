@@ -12,10 +12,12 @@ r.connect({
 });
 
 const dbConnect = (cb) => {
+  console.log('SOMEOENEO')
   r.connect({ 
-    host: 'localhost', port: 28015 
+    host: 'localhost', port: 28015
   }, function(err, conn) {
     if (err) throw err;
+    console.log(conn, 'YEAAAAAAA')
     cb(conn);
   });
 };
@@ -62,4 +64,4 @@ const subscribeToEvents = (cb, conn) => {
 
 
 
-export { createTables, newEvent, getEvents, subscribeToEvents, dbDisconnect };
+export { createTables, newEvent, getEvents, subscribeToEvents, dbDisconnect, dbConnect };

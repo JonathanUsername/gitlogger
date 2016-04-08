@@ -13,13 +13,12 @@ export const registerSocket = (listener) => {
   io.on('connection', function(socket) {
     console.log('user connected', socket.id);
     dbConnect(conn => {
-      dbConn = conn;
+      getEvents(sendAllEvents, conn);
+      subscribeToEvents(sendEvent, conn);
     });
     sockets[socket.id] = {
       dbConnection: dbConn
-    }
-    getEvents(sendAllEvents, dbConn);
-    subscribeToEvents(sendEvent, dbConn);
+    };
   });
   io.on('disconnect', function(socket) {
     console.log('user disconnected', socket.id);
