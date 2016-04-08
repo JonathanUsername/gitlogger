@@ -1,4 +1,4 @@
-import { subscribeToEvents, getEvents, dbConnect } from './db';
+import { subscribeToEvents, getEvents, dbConnect, dbDisconnect } from './db';
 
 let io;
 
@@ -8,14 +8,20 @@ export const registerSocket = (listener) => {
 
   io = require('socket.io')(listener);
 
+  let dbConn;
+
   io.on('connection', function(socket) {
     console.log('user connected', socket.id);
-    const dbConn = dbConnect();
+    dbConn = dbConnect();
     sockets[socket.id] = {
       dbConnection: dbConn
     }
     getEvents(sendAllEvents, dbConn);
     subscribeToEvents(sendEvent, dbConn);
+  });
+  io.on('disconnect', function(socket) {
+    console.log('user disconnected', socket.id);
+    dbDisconnect(dbConn);
   });
 };
 

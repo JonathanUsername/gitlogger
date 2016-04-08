@@ -20,6 +20,11 @@ const dbConnect = (cb) => {
   });
 };
 
+const dbDisconnect = (conn) => {
+  conn.close();
+  console.log('disconnected from db');
+};
+
 const createTables = () => {
   r.tableCreate('events').run(genericConnection, function(err, result) {
     if (err) throw err;
@@ -57,4 +62,4 @@ const subscribeToEvents = (cb, conn) => {
 
 
 
-export { createTables, newEvent, getEvents, subscribeToEvents };
+export { createTables, newEvent, getEvents, subscribeToEvents, dbDisconnect };
