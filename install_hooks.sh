@@ -46,7 +46,9 @@ curl -s --data "repo=\$repoName&branch=\$branchName&user=\$user" "\$gitloggerUrl
 
 EOF
 
-echo 'Hooks template installed. Please git init in the repo you wish to track. All new and subsequent git clone/inits will report data to my server.'
+chmod 755 ~/.git_template/hooks/*
+
+echo 'Done. Git init in a repo to begin. I should make this per-repo.'
 
 
 
