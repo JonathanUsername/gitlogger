@@ -12,7 +12,9 @@ export const registerSocket = (listener) => {
 
   io.on('connection', function(socket) {
     console.log('user connected', socket.id);
-    dbConn = dbConnect();
+    dbConnect(conn => {
+      dbConn = conn;
+    });
     sockets[socket.id] = {
       dbConnection: dbConn
     }
