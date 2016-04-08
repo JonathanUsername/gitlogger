@@ -24,7 +24,7 @@ commitMsg="$(printf "$(git log -1 --pretty=%B)")"
 
 user="$(git config user.email)"
 
-curl --data "repo=$repoName&branch=$branchName&user=$user&msg=$commitMsg" "$gitloggerUrl/commit" &
+curl -s --data "repo=$repoName&branch=$branchName&user=$user&msg=$commitMsg" "$gitloggerUrl/commit" &
 
 EOF
 
@@ -42,7 +42,7 @@ repoName="$(basename $(git rev-parse --show-toplevel))"
 
 user="$(git config user.email)"
 
-curl --data "repo=$repoName&branch=$branchName&user=$user" "$gitloggerUrl/checkout" &
+curl -s --data "repo=$repoName&branch=$branchName&user=$user" "$gitloggerUrl/checkout" &
 
 EOF
 
