@@ -1,6 +1,8 @@
-import { subscribeToEvents, getEvents } from './db';
+import { subscribeToEvents, getEvents, dbConnect } from './db';
 
 let io;
+
+const sockets = {};
 
 export const registerSocket = (listener) => {
 
@@ -8,8 +10,12 @@ export const registerSocket = (listener) => {
 
   io.on('connection', function(socket) {
     console.log('user connected', socket.id);
-    getEvents(sendAllEvents);
-    subscribeToEvents(sendEvent);
+    const dbConn = dbConnect();
+    sockets[socket.id] = {
+      dbConnection: dbConn
+    }
+    getEvents(sendAllEvents, dbConn);
+    subscribeToEvents(sendEvent, dbConn);
   });
 };
 
