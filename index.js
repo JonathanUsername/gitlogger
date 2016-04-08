@@ -47,6 +47,15 @@ server.route({
   }
 });
 
+server.route({
+  method: 'GET',
+  path:'/createTable', 
+  handler: function (request, reply) {
+    createTables();
+    reply('done!');
+  }
+});
+
 server.register(inert, (err) => {
   if (err) throw err;
   server.route({
