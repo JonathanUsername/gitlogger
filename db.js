@@ -33,7 +33,7 @@ const newEvent = (event) => {
 };
 
 const getEvents = (cb, conn) => {
-  r.table('events').run(conn, function(err, cursor) {
+  r.table('events').limit(10).run(conn, function(err, cursor) {
     if (err) throw err;
     cursor.toArray(function(err, result) {
       if (err) throw err;
