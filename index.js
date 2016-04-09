@@ -73,6 +73,14 @@ server.register(inert, (err) => {
     }
   });
 
+  server.route({
+    method: 'GET',
+    path: '/jquery-1.11.1.js',
+    handler: function (request, reply) {
+      reply.file('front/jquery-1.11.1.js');
+    }
+  });
+
   server.start((err) => {
     if (err) throw err;
     console.log('Server running at:', server.info.uri);
