@@ -1,23 +1,10 @@
 import r from 'rethinkdb';
 
-let genericConnection = null;
-
-// Generic connection for git hooks:
-r.connect({ 
-  host: 'localhost', port: 28015 
-}, function(err, conn) {
-  if (err) throw err;
-  genericConnection = conn;
-  console.log('connected to rethinkdb.')
-});
-
 const dbConnect = (cb) => {
-  console.log('SOMEOENEO')
   r.connect({ 
     host: 'localhost', port: 28015
   }, function(err, conn) {
     if (err) throw err;
-    console.log(conn, 'YEAAAAAAA')
     cb(conn);
   });
 };
@@ -28,16 +15,20 @@ const dbDisconnect = (conn) => {
 };
 
 const createTables = () => {
-  r.tableCreate('events').run(genericConnection, function(err, result) {
-    if (err) throw err;
-    console.log(JSON.stringify(result, null, 2));
+  dbConnect(conn => {
+    r.tableCreate('events').run(conn, function(err, result) {
+      if (err) throw err;
+      dbDisconnect(conn);
+    })
   })
 };
 
 const newEvent = (event) => {
-  r.table('events').insert([event]).run(genericConnection, function(err, result) {
-    if (err) throw err;
-    console.log(JSON.stringify(result, null, 2));
+  dbConnect(conn => {
+    r.table('events').insert([event]).run(genericConnection, function(err, result) {
+      if (err) throw err;
+      dbDisconnect(conn);
+    })
   })
 };
 
