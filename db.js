@@ -25,7 +25,7 @@ const createTables = () => {
 
 const newEvent = (event) => {
   dbConnect(conn => {
-    r.table('events').insert([event]).run(genericConnection, function(err, result) {
+    r.table('events').insert([event]).run(conn, function(err, result) {
       if (err) throw err;
       dbDisconnect(conn);
     })
