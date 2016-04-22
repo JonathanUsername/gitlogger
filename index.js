@@ -115,10 +115,10 @@ server.register([Bell, Cookie, inert], err => {
       },
       handler: function (request, reply) {
         console.log(request.auth.session)
-        // if (request.auth.isAuthenticated) {
-          reply.file('front/index.html');
+        // // if (request.auth.isAuthenticated) {
+        //   reply.file('front/index.html');
         // } else {
-          // reply(`<a href="/login">Log the eff in or eff the eff off</a>`)
+          reply(`<a href="/login">Log the eff in or eff the eff off</a>`)
         // }
       }
     }
