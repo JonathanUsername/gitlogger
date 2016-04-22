@@ -109,12 +109,12 @@ server.register([Bell, Cookie, inert], err => {
     method: 'GET',
     path: '/',
     config : {
-      auth: {
-        strategy: 'session',
-        mode: 'try'
-      },
+      // auth: {
+      //   strategy: 'session',
+      //   mode: 'try'
+      // },
       handler: function (request, reply) {
-        console.log(request.auth.session)
+        // console.log(request.auth.session)
         // // if (request.auth.isAuthenticated) {
         //   reply.file('front/index.html');
         // } else {
