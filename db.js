@@ -27,10 +27,12 @@ const createTables = () => {
   dbConnect(conn => {
     r.tableCreate('events').run(conn, function(err, result) {
       if (err) throw err;
-      r.table('events').indexCreate('time').run(conn, () => {
-        if (err) throw err;
-        dbDisconnect(conn);
-      })
+      r.table('events')
+        .indexCreate('time')
+        .run(conn, () => {
+          if (err) throw err;
+          dbDisconnect(conn);
+        })
     })
   })
 };
@@ -50,7 +52,7 @@ const newEvent = (event) => {
 const getEvents = (conn, cb) => {
   r.table('events')
     .orderBy({ index: r.desc('time') })
-    .limit(10)
+    .limit(5)
     .run(conn, function(err, cursor) {
       if (err) throw err;
       cursor.toArray(function(err, result) {

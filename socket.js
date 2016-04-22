@@ -28,9 +28,15 @@ export const registerSocket = (listener) => {
 
 export const sendEvent = (event) => {
   console.log('sending', event)
-  io.emit('event', event);
+  io.emit('action', {
+    type: 'NEW_EVENT',
+    payload: event
+  });
 };
 
 export const sendAllEvents = (events) => {
-  io.emit('events', events);
+  io.emit('action', {
+    type: 'NEW_EVENT',
+    payload: events
+  });
 };

@@ -11,7 +11,9 @@
   "author": "Jonathan King",
   "license": "ISC",
   "dependencies": {
+    "bell": "~7.3.0",
     "hapi": "~13.3.0",
+    "hapi-auth-cookie": "~6.1.1",
     "inert": "~3.2.0",
     "pg": "~4.5.2",
     "rethinkdb": "~2.3.0"
