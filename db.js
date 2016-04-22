@@ -49,30 +49,34 @@ const newEvent = (event) => {
   })
 };
 
-const getEvents = (conn, cb) => {
-  r.table('events')
-    .orderBy({ index: r.desc('time') })
-    .limit(5)
-    .run(conn, function(err, cursor) {
-      if (err) throw err;
-      cursor.toArray(function(err, result) {
+const getEvents = (cb) => {
+  dbConnect(conn => {
+    r.table('events')
+      .orderBy({ index: r.desc('time') })
+      .limit(5)
+      .run(conn, function(err, cursor) {
         if (err) throw err;
-        cb(result);
+        cursor.toArray(function(err, result) {
+          if (err) throw err;
+          cb(result);
+        });
       });
-    });
+  })
 };
 
-const subscribeToEvents = (conn, cb) => {
-  r.table('events')
-    .changes()
-    .run(conn, function(err, cursor) {
-      if (err) throw err;
-      console.log('subbing')
-      cursor.each(function(err, row) {
+const subscribeToEvents = (cb) => {
+  dbConnect(conn => {
+    r.table('events')
+      .changes()
+      .run(conn, function(err, cursor) {
         if (err) throw err;
-        cb(row, cursor);
+        console.log('subbing')
+        cursor.each(function(err, row) {
+          if (err) throw err;
+          cb(row, cursor);
+        });
       });
-    });
+  })
 };
 
 
