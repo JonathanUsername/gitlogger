@@ -11,11 +11,11 @@ const dbConnect = (cb) => {
   });
 };
 
-// dbConnect(conn => {
-//   r.tableDrop('events').run(conn, () => {
-//     createTables();
-//   });
-// })
+dbConnect(conn => {
+  r.tableDrop('events').run(conn, () => {
+    createTables();
+  });
+})
 
 
 const dbDisconnect = (conn) => {
