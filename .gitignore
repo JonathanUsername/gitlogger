@@ -1,5 +1,5 @@
 node_modules/
-client/
 rethinkdb_data/
 npm-debug.log
 *.secret.js
+client/node_modules/

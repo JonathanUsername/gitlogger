@@ -1,0 +1,17 @@
+
+
+.event-row {
+  background: $mercury;
+  /*font-family: testWoff testTtf;*/
+}
+
+/*@font-face {
+  font-family: testWoff;
+  src: url("../../../../front/octicons.woff");
+}
+
+@font-face {
+  font-family: testTtf;
+  src: url("../../../../front/octicons.ttf");
+  font-weight: bold;
+}*/

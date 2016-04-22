@@ -1,0 +1,7 @@
+dist
+node_modules
+npm-debug.log
+.DS_Store
+*.orig
+src/secrets.js
+*.secret.js
