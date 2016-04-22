@@ -6,7 +6,7 @@ import inert from 'inert';
 import Bell from 'bell';
 import Cookie from 'hapi-auth-cookie';
 import { registerSocket } from './socket.js';
-import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from './github.secret';
+// import { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } from './github.secret';
 
 // Create a server with a host and port
 const server = new Hapi.Server();
@@ -20,21 +20,21 @@ server.connection({
 registerSocket(server.listener);
 
 server.register([Bell, Cookie, inert], err => {
-  server.auth.strategy('oauth', 'bell', {
-    provider: 'github',
-    password: 'Somethingblahblahblahidontknowwhyineedtoaddthisbecauseimanidiot',
-    clientId: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    isSecure: false  // CHANGEME
-  })
+  // server.auth.strategy('oauth', 'bell', {
+  //   provider: 'github',
+  //   password: 'Somethingblahblahblahidontknowwhyineedtoaddthisbecauseimanidiot',
+  //   // clientId: GITHUB_CLIENT_ID,
+  //   // clientSecret: GITHUB_CLIENT_SECRET,
+  //   isSecure: false  // CHANGEME
+  // })
 
-  server.auth.strategy('session', 'cookie', {
-      password: 'yaddayaddayaddakdmgkmdglmgmdkmdsklgmkldmgdklsmlkgmkdlsmgldnjn',
-      cookie: 'sid',
-      redirectTo: '/',
-      redirectOnTry: false,
-      isSecure: false // CHANGEME
-  })
+  // server.auth.strategy('session', 'cookie', {
+  //     password: 'yaddayaddayaddakdmgkmdglmgmdkmdsklgmkldmgdklsmlkgmkdlsmgldnjn',
+  //     cookie: 'sid',
+  //     redirectTo: '/',
+  //     redirectOnTry: false,
+  //     isSecure: false // CHANGEME
+  // })
 
   server.route({
     method: ['GET', 'POST'], // Must handle both GET and POST
