@@ -36,31 +36,31 @@ server.register([Bell, Cookie, inert], err => {
   //     isSecure: false // CHANGEME
   // })
 
-  server.route({
-    method: ['GET', 'POST'], // Must handle both GET and POST
-    path: '/login',          // The callback endpoint registered with the provider
-    config: {
-      auth: 'oauth',
-      handler: function (request, reply) {
+  // server.route({
+  //   method: ['GET', 'POST'], // Must handle both GET and POST
+  //   path: '/login',          // The callback endpoint registered with the provider
+  //   config: {
+  //     auth: 'oauth',
+  //     handler: function (request, reply) {
 
-        if (!request.auth.isAuthenticated) {
-          return reply('Authentication failed due to: ' + request.auth.error.message);
-        }
+  //       if (!request.auth.isAuthenticated) {
+  //         return reply('Authentication failed due to: ' + request.auth.error.message);
+  //       }
 
-        console.log(request.auth.session)
+  //       console.log(request.auth.session)
 
-        const c = request.auth.credentials
-        const profile = c.profile;
-        profile.token = c.token;
-        profile.secret = c.secret;
-        console.log('profile', profile);
-        // request.auth.session.clear();
-        request.auth.session.set(profile);
+  //       const c = request.auth.credentials
+  //       const profile = c.profile;
+  //       profile.token = c.token;
+  //       profile.secret = c.secret;
+  //       console.log('profile', profile);
+  //       // request.auth.session.clear();
+  //       request.auth.session.set(profile);
 
-        return reply.redirect('/');
-      }
-    }
-  });
+  //       return reply.redirect('/');
+  //     }
+  //   }
+  // });
 
   server.route({
     method: 'POST',
